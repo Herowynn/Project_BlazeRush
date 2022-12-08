@@ -35,8 +35,8 @@ public class CarController : MonoBehaviour
         if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
         {
             _speedInput = Input.GetAxis("Vertical") * ForwardAccel * 1000f;
-            LeftFrontWheel.transform.Rotate(WheelRotation * Time.deltaTime, 0f, 0f);
-            RightFrontWheel.transform.Rotate(WheelRotation * Time.deltaTime, 0f, 0f);
+            LeftFrontWheel.transform.Rotate(0f, WheelRotation, 0f);
+            RightFrontWheel.transform.Rotate(0f, WheelRotation, 0f);
         }
 
         _turnInput = Input.GetAxis("Horizontal");
@@ -45,18 +45,19 @@ public class CarController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
                 new Vector3(0f, _turnInput * TurnStrength * Time.deltaTime, 0f));
+
             if(Mathf.Abs(Input.GetAxis("Vertical")) > 0)
             {
-                LeftBackWheel.transform.Rotate(WheelRotation * Time.deltaTime, 0f, 0f);
-                RightBackWheel.transform.Rotate(WheelRotation * Time.deltaTime, 0f, 0f);
+                LeftBackWheel.transform.Rotate(0f, WheelRotation, 0f);
+                RightBackWheel.transform.Rotate(0f, WheelRotation, 0f);
             }
         }
 
-        LeftFrontWheel.localRotation = Quaternion.Euler(LeftFrontWheel.localRotation.eulerAngles.x,
-            (_turnInput * MaxWheelTurn) - 180, LeftFrontWheel.localRotation.eulerAngles.z);
+        LeftFrontWheel.localRotation = Quaternion.Euler(LeftFrontWheel.localRotation.eulerAngles.x, (_turnInput * MaxWheelTurn) - 90,
+              LeftFrontWheel.localRotation.eulerAngles.z);
 
-        RightFrontWheel.localRotation = Quaternion.Euler(RightFrontWheel.localRotation.eulerAngles.x,
-            (_turnInput * MaxWheelTurn), RightFrontWheel.localRotation.eulerAngles.z);
+        RightFrontWheel.localRotation = Quaternion.Euler(RightFrontWheel.localRotation.eulerAngles.x, (_turnInput * MaxWheelTurn) - 90,
+             RightFrontWheel.localRotation.eulerAngles.z);
 
         transform.position = SphereRB.transform.position;
     }
