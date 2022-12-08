@@ -2,21 +2,15 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/Proto_Car_Remy/[Ll]ibrary/
-/Proto_Car_Remy/[Tt]emp/
-/Proto_Car_Remy/[Oo]bj/
-/Proto_Car_Remy/[Bb]uild/
-/Proto_Car_Remy/[Bb]uilds/
-/Proto_Car_Remy/[Ll]ogs/
-/Proto_Car_Remy/[Mm]emoryCaptures/
 
-/PROTO_MULTIPLE_INPUT/[Ll]ibrary/
-/PROTO_MULTIPLE_INPUT/[Tt]emp/
-/PROTO_MULTIPLE_INPUT/[Oo]bj/
-/PROTO_MULTIPLE_INPUT/[Bb]uild/
-/PROTO_MULTIPLE_INPUT/[Bb]uilds/
-/PROTO_MULTIPLE_INPUT/[Ll]ogs/
-/PROTO_MULTIPLE_INPUT/[Mm]emoryCaptures/
+*[Ll]ibrary/
+*[Tt]emp/
+*[Oo]bj/
+*[Bb]uild/
+*[Bb]uilds/
+*[Ll]ogs/
+*[Mm]emoryCaptures/
+*UserSettings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -50,6 +44,7 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*.idea
 
 # Unity3D generated meta files
 *.pidb.meta
