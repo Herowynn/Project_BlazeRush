@@ -10,7 +10,9 @@ public class CarController : MonoBehaviour
     private bool _isCarGrounded;
     private bool _hasBoost = false;
     private bool _hasOffense = false;
+    private bool _isTouched = false;
 
+    public float rotation;
     public int gravity;
     public float TurnSpeed;
     public float FwdSpeed;
@@ -21,6 +23,9 @@ public class CarController : MonoBehaviour
     public Rigidbody CarRB;
     public Rigidbody SphereRB;
     public LayerMask GroundLayer;
+
+    public float ExplosionForce = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +81,19 @@ public class CarController : MonoBehaviour
                 return;
             }
         }
+        if(_isTouched == true)
+        {
+            if (_isCarGrounded == true)
+            {
+                _isTouched = false;
+                transform.rotation = Quaternion.identity;
+            }
+            else
+            {
+                transform.Rotate(rotation, 0, 0, Space.World);
+                Debug.Log("le flip mon gars");
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -94,32 +112,36 @@ public class CarController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.parent.parent.name == "Bonus")
+        if (collision.gameObject.GetComponent<Projectile>() == true)
         {
-            if (collision.transform.parent.name == "Boost")
+            SphereRB.AddForce(SphereRB.transform.up * ExplosionForce, ForceMode.Impulse);
+            Destroy(collision.gameObject);
+            _isTouched = true;
+            return;
+        }
+        if (collision.gameObject.GetComponent<Boost>() == true)
+        {
+            if (_hasBoost)
             {
-                if (_hasBoost)
-                {
-                    return;
-                }
-                else
-                {
-                    _hasBoost = true;
-                    Destroy(collision.gameObject);
-                }
+                return;
             }
-            if (collision.transform.parent.name == "Offense")
+            else
             {
-                if (_hasOffense)
-                {
-                    return;
-                }
-                else
-                {
-                    _hasOffense = true;
-                    Destroy(collision.gameObject);
-                }
+                _hasBoost = true;
+                Destroy(collision.gameObject);
             }
         }
+        if (collision.gameObject.GetComponent<Offense>() == true)
+        {
+            if (_hasOffense)
+            {
+                return;
+            }
+            else
+            {
+                _hasOffense = true;
+                Destroy(collision.gameObject);
+            }
+        }      
     }
 }
