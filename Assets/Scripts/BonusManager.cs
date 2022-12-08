@@ -35,8 +35,8 @@ public class BonusManager : MonoBehaviour
     }
     private void SpawnBonus()
     {
-        int randomX = Random.Range(5, 10);
-        int randomY = Random.Range(5, 10);
+        int randomX = Random.Range(-5, 5);
+        int randomY = Random.Range(-5, 5);
         int randomZ = Random.Range(-5, 5);
         int rndBonusType = Random.Range(0, 2);
 
