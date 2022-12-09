@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] Nodes;
+    [SerializeField]
+    private CheckPointManager _checkPointManager;
 
     // Start is called before the first frame update
     void Start()
