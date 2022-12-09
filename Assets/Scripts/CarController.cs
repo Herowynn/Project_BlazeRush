@@ -51,11 +51,11 @@ public class CarController : MonoBehaviour
         {
             if (_hasOffense)
             {
-               Vector3 position = transform.position;
-                position += transform.forward*3;
+                Vector3 position = transform.position;
+                position += transform.forward * 3;
                 GameObject go = Instantiate(AttackBoost, position, Quaternion.identity);
-                go.GetComponent<Projectile>().Init(transform.forward);
-                
+                go.GetComponent<Offensive>().Shoot(transform.forward);
+
                 _hasOffense = false;
             }
             else
@@ -94,32 +94,32 @@ public class CarController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.parent.parent.name == "Bonus")
+
+        if (collision.gameObject.GetComponent<Bonus>() != null)
         {
-            if (collision.transform.parent.name == "Boost")
+            switch (collision.gameObject.GetComponent<Bonus>().Type)
             {
-                if (_hasBoost)
-                {
-                    return;
-                }
-                else
-                {
-                    _hasBoost = true;
-                    Destroy(collision.gameObject);
-                }
+                case BonusType.Attack:
+                    if (_hasOffense) return;
+                    else
+                    {
+                        Destroy(collision.gameObject);
+                        _hasOffense = true;
+                    }
+                    break;
+                case BonusType.Boost:
+                    if (_hasBoost) return;
+                    else
+                    {
+                        Destroy(collision.gameObject);
+                        _hasBoost = true;
+                    }
+                    break;
+                default:
+                    break;
             }
-            if (collision.transform.parent.name == "Offense")
-            {
-                if (_hasOffense)
-                {
-                    return;
-                }
-                else
-                {
-                    _hasOffense = true;
-                    Destroy(collision.gameObject);
-                }
-            }
+
         }
     }
 }
+
