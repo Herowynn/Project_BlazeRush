@@ -446,7 +446,8 @@ GameObject:
   - component: {fileID: 120085314}
   - component: {fileID: 120085313}
   - component: {fileID: 120085312}
-  m_Layer: 0
+  - component: {fileID: 120085316}
+  m_Layer: 10
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,12 +462,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120085310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5351777, y: 0.12900001, z: 4.47}
+  m_LocalPosition: {x: -0.5351777, y: 0.12900019, z: 4.210001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1584411535}
-  m_RootOrder: 3
+  m_Father: {fileID: 1381320849}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &120085312
 MeshFilter:
@@ -724,6 +725,19 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!135 &120085316
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120085310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.60806954
+  m_Center: {x: 0.6333612, y: 0.46637452, z: 1.0186596}
 --- !u!43 &123734326
 Mesh:
   m_ObjectHideFlags: 0
@@ -2490,15 +2504,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.1564345, y: -0, z: -0, w: 0.98768836}
-  m_LocalPosition: {x: 0, y: 4.46, z: -6.6000004}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: -0.5, y: 5.6, z: -8.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2137716989}
   m_Father: {fileID: 1584411535}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 18, y: 0, z: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2789,7 +2803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013127711938, guid: d863ff2fe81f33f409837a143f1c5deb, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4000013127711938, guid: d863ff2fe81f33f409837a143f1c5deb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3398,7 +3412,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1584411535}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1264098358
 Rigidbody:
@@ -8646,6 +8660,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c42abd928b510d4897846ff5ab7b5e3, type: 3}
+--- !u!1 &1381320848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1381320849}
+  m_Layer: 0
+  m_Name: ArrowRotationCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1381320849
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381320848}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 120085311}
+  m_Father: {fileID: 1584411535}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1387055120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9049143891591251533, guid: 8f460221fd3a51244adcb90f7cd8b576,
@@ -9088,13 +9134,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544617642}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1584411535}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1556180855 stripped
 Transform:
@@ -9279,12 +9325,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1544617643}
-  - {fileID: 1514427521}
-  - {fileID: 2118300309}
-  - {fileID: 120085311}
-  - {fileID: 963194228}
+  - {fileID: 1381320849}
   - {fileID: 1264098357}
+  - {fileID: 1544617643}
+  - {fileID: 2118300309}
+  - {fileID: 1514427521}
+  - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9301,17 +9347,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SphereRB: {fileID: 1264098358}
-  ForwardAccel: 50
+  ForwardAccel: 100
   MaximumSpeed: 50
   TurnStrength: 180
-  DragOnGround: 0.5
+  DragOnGround: 1.3
   WheelTurnSpeed: 100
-  sideDragForce: 70
-  WhatIsGround:
+  groundMask:
     serializedVersion: 2
     m_Bits: 256
-  GroundRayLength: 0.5
-  GroundRayPoint: {fileID: 1544617643}
+  arrowMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  GroundRayLength: 0.55
+  RayPoint: {fileID: 1544617643}
   LeftFrontWheel: {fileID: 513861139}
   RightFrontWheel: {fileID: 1714970114}
   LeftBackWheel: {fileID: 1212981453}
@@ -9319,6 +9367,7 @@ MonoBehaviour:
   MaxWheelTurn: 25
   WheelRotation: 5
   Arrow: {fileID: 120085310}
+  ArrowRotationCenter: {fileID: 1381320848}
 --- !u!1001 &1584512017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15800,7 +15849,7 @@ Transform:
   - {fileID: 1332825473}
   - {fileID: 1924740530}
   m_Father: {fileID: 1584411535}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2119982081
 PrefabInstance:

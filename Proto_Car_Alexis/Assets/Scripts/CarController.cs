@@ -7,11 +7,11 @@ public class CarController : MonoBehaviour
 {
     public Rigidbody SphereRB;
     public float ForwardAccel = 8f, MaximumSpeed = 50f, TurnStrength = 180f, DragOnGround = 3f, WheelTurnSpeed = 5f;
-    public float sideDragForce = 1000f;
 
-    public LayerMask WhatIsGround;
+    public LayerMask groundMask;
+    public LayerMask arrowMask;
     public float GroundRayLength = .5f;
-    public Transform GroundRayPoint;
+    public Transform RayPoint;
 
     public Transform LeftFrontWheel, RightFrontWheel, LeftBackWheel, RightBackWheel;
     public float MaxWheelTurn = 25f;
@@ -19,20 +19,28 @@ public class CarController : MonoBehaviour
     public float WheelRotation = 50f;
 
     public GameObject Arrow;
+    public GameObject ArrowRotationCenter;
+
+    public static CarController Instance;
 
 
     private float _speedInput, _turnInput;
+    private float _arrayRayLength;
     private bool _isGrounded;
-    private float _fictiveSideDragForce = 0f;
-    private float _turnSense;
+    private bool _canMove;
 
     private void Start()
     {
         SphereRB.transform.parent = null;
+
+        Vector3 distArrowRayPoint = Arrow.transform.position - RayPoint.position;
+        _arrayRayLength = distArrowRayPoint.magnitude + 1f;
     }
 
     private void Update()
     {
+        Debug.Log(SphereRB.velocity);
+
         _speedInput = 0f;
 
         if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
@@ -41,24 +49,14 @@ public class CarController : MonoBehaviour
 
             LeftFrontWheel.transform.Rotate(0f, WheelRotation, 0f);
             RightFrontWheel.transform.Rotate(0f, WheelRotation, 0f);
-
-            if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
-            {
-                _fictiveSideDragForce = sideDragForce * 1000f;
-                _turnSense = Mathf.Sign(Input.GetAxis("Horizontal"));
-            }
-            else
-            {
-                _fictiveSideDragForce = 0f;
-            }
         }
 
         _turnInput = Input.GetAxis("Horizontal");
 
         if (_isGrounded)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + 
-                new Vector3(0f, _turnInput * TurnStrength * Time.deltaTime, 0f));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, _turnInput * TurnStrength * Time.deltaTime, 0f));
+            ArrowRotationCenter.transform.rotation = Quaternion.Euler(ArrowRotationCenter.transform.rotation.eulerAngles + new Vector3(0f, _turnInput * TurnStrength * 1.5f * Time.deltaTime, 0f));
 
             if(Mathf.Abs(Input.GetAxis("Vertical")) > 0)
             {
@@ -79,17 +77,23 @@ public class CarController : MonoBehaviour
     private void FixedUpdate()
     {
         _isGrounded = false;
+        _canMove = false;
 
         RaycastHit hit;
 
-        if(Physics.Raycast(GroundRayPoint.position, -transform.up, out hit, GroundRayLength, WhatIsGround))
+        if (Physics.Raycast(RayPoint.position, -transform.up, out hit, GroundRayLength, groundMask))
         {
             _isGrounded = true;
 
-            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+/*            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;*/
         }
 
-        if(_isGrounded)
+        if (Physics.Raycast(RayPoint.position, transform.forward, out hit, _arrayRayLength, arrowMask))
+        {
+            _canMove = true;
+        }
+
+        if (_isGrounded)
         {
             SphereRB.drag = DragOnGround;
 
@@ -97,12 +101,6 @@ public class CarController : MonoBehaviour
             {
                 SphereRB.AddForce(transform.forward * _speedInput);
                 SphereRB.velocity = Vector3.ClampMagnitude(SphereRB.velocity, MaximumSpeed);
-            }
-
-            if (_fictiveSideDragForce > 0f)
-            {
-                Vector3 sideDragForceDirection = Quaternion.Euler(0, _turnSense * 90, 0) * transform.forward;
-                SphereRB.AddForce(sideDragForceDirection * _fictiveSideDragForce);
             }
         }
         else
