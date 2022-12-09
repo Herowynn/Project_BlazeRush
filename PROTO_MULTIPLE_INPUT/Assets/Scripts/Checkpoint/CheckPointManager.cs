@@ -21,6 +21,5 @@ public class CheckPointManager : MonoBehaviour
     public void PlaceInstanceOnStartingLine(GameObject gameObject)
     {
         gameObject.transform.position = FirstCheckpoint.transform.position;
-        Debug.Log(gameObject.name);
     }
 }

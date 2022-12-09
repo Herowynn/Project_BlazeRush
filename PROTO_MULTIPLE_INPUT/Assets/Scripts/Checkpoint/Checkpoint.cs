@@ -7,6 +7,6 @@ public class Checkpoint : MonoBehaviour
 {
     public void OnTriggerEnter(Collider other)
     {
-        GetComponentInParent<CheckPointManager>().CurrentCheckpoint = transform;
+        other.GetComponent<PlayerCheckpoint>().IncrementCheckpointCount();
     }
 }

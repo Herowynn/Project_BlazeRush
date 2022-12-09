@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(SphereController))]
-public class SphereController : MonoBehaviour
+[RequireComponent(typeof(PlayerController))]
+public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float playerSpeed = 2.0f;

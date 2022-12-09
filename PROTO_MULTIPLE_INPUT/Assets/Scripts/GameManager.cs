@@ -1,21 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private CheckPointManager _checkPointManager;
+    //Singleton
+    public static GameManager Instance;
+    
+    [Header("Instances")]
+    public List<GameObject> PlayersGameObjects;
+    public GameObject CheckPointManager;
+    
+    [Header("GD")]
+    public List<string> PlayersUsernames;//Will be replaced by inputs
+    public int CurrentIndexForUsernames;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        Instance = this;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    private void Start()
     {
-        
+        PlayersGameObjects = new List<GameObject>();
+        CurrentIndexForUsernames = 0;
     }
 }

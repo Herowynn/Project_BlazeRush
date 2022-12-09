@@ -155,7 +155,7 @@ Transform:
   - {fileID: 1112459582}
   - {fileID: 1020234548}
   m_Father: {fileID: 653117888}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &278285474
 PrefabInstance:
@@ -1301,7 +1301,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1280246114}
-  - {fileID: 1189858952}
   - {fileID: 187829553}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1974,37 +1973,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 23.9264, y: 7.799094, z: 1}
   m_Center: {x: 1.750843, y: 3.399547, z: 0}
---- !u!1 &1189858951
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1189858952}
-  m_Layer: 0
-  m_Name: Players
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1189858952
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189858951}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 653117888}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1280246112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,19 +2008,7 @@ MonoBehaviour:
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1020234549}
-        m_TargetAssemblyTypeName: CheckPointManager, Assembly-CSharp
-        m_MethodName: PlaceInstanceOnStartingLine
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 138313078756103480, guid: 66d79074b1e03724db5d630e8cebf831, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2870,7 +2826,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead1edd67f2046844b58071506df348e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _checkPointManager: {fileID: 1020234549}
+  PlayersGameObjects: []
+  CheckPointManager: {fileID: 1020234547}
+  PlayersUsernames:
+  - Armand
+  - "R\xE9my"
+  CurrentIndexForUsernames: 0
 --- !u!43 &2063871336
 Mesh:
   m_ObjectHideFlags: 0
