@@ -9,7 +9,6 @@ public class CarController : MonoBehaviour
     private float _turnInput;
     private bool _isCarGrounded;
     private bool _hasBoost = false;
-    private bool _hasOffense = false;
 
     public int gravity;
     public float TurnSpeed;
@@ -17,6 +16,8 @@ public class CarController : MonoBehaviour
     public float BwdSpeed;
     public float alignToGroundTime;
 
+    public GameObject[] BonusList;
+    public GameObject AttackObject;
     public GameObject AttackBoost;
     public Rigidbody CarRB;
     public Rigidbody SphereRB;
@@ -49,14 +50,15 @@ public class CarController : MonoBehaviour
 
         if (Input.GetButton("Fire1"))
         {
-            if (_hasOffense)
+            if (AttackObject.transform.GetChild(0).GetComponent<MachineGun>())
             {
                 Vector3 position = transform.position;
                 position += transform.forward * 3;
                 GameObject go = Instantiate(AttackBoost, position, Quaternion.identity);
                 go.GetComponent<Offensive>().Shoot(transform.forward);
 
-                _hasOffense = false;
+                //Destroy(AttackObject.gameObject.GetComponent<MachineGun>());
+                Destroy(AttackObject.transform.GetChild(0).gameObject);
             }
             else
             {
@@ -92,6 +94,7 @@ public class CarController : MonoBehaviour
 
     }
 
+    [System.Obsolete]
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -100,11 +103,14 @@ public class CarController : MonoBehaviour
             switch (collision.gameObject.GetComponent<Bonus>().Type)
             {
                 case BonusType.Attack:
-                    if (_hasOffense) return;
+                    if (AttackObject.transform.childCount != 0) return;
                     else
                     {
                         Destroy(collision.gameObject);
-                        _hasOffense = true;
+                      
+                        
+                        GameObject go = Instantiate(BonusList[0], AttackObject.transform);
+                        //AttackObject.transform.GetChild(0).gameObject.AddComponent<MachineGun>();
                     }
                     break;
                 case BonusType.Boost:
