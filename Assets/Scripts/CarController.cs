@@ -17,7 +17,7 @@ public class CarController : MonoBehaviour
     public float alignToGroundTime;
 
     public GameObject[] BonusList;
-    public GameObject AttackObject;
+    public Transform AttackObject;
     public GameObject AttackBoost;
     public Rigidbody CarRB;
     public Rigidbody SphereRB;
@@ -48,17 +48,20 @@ public class CarController : MonoBehaviour
         Quaternion toRotateTo = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, toRotateTo, alignToGroundTime * Time.deltaTime);
 
-        if (Input.GetButton("Fire1"))
+        if (AttackBoost != null && Input.GetButton("Fire1"))
         {
-            if (AttackObject.transform.GetChild(0).GetComponent<MachineGun>())
+            if (AttackObject.transform.childCount != 0)
             {
-                Vector3 position = transform.position;
-                position += transform.forward * 3;
-                GameObject go = Instantiate(AttackBoost, position, Quaternion.identity);
-                go.GetComponent<Offensive>().Shoot(transform.forward);
+                if (AttackObject.transform.GetComponentInChildren<MachineGun>())
+                {
+                    Vector3 position = transform.position;
+                    position += transform.forward * 3;
 
-                //Destroy(AttackObject.gameObject.GetComponent<MachineGun>());
-                Destroy(AttackObject.transform.GetChild(0).gameObject);
+                    AttackObject.transform.GetChild(0).GetComponent<MachineGun>().Shoot( transform.forward);
+                    AttackBoost = null;
+                    //Destroy(AttackObject.gameObject.GetComponent<MachineGun>());
+                  
+                }
             }
             else
             {
@@ -94,7 +97,6 @@ public class CarController : MonoBehaviour
 
     }
 
-    [System.Obsolete]
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -107,9 +109,9 @@ public class CarController : MonoBehaviour
                     else
                     {
                         Destroy(collision.gameObject);
-                      
-                        
-                        GameObject go = Instantiate(BonusList[0], AttackObject.transform);
+
+
+                        AttackBoost = Instantiate(BonusList[0], AttackObject);
                         //AttackObject.transform.GetChild(0).gameObject.AddComponent<MachineGun>();
                     }
                     break;
