@@ -21,4 +21,9 @@ public class PlayerCheckpoint : MonoBehaviour
     {
         _numberOfCheckpointPassed++;
     }
+
+    public int GetNumberOfCheckpointPassed()
+    {
+        return _numberOfCheckpointPassed;
+    }
 }

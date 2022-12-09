@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerInfo : MonoBehaviour
 {
     [HideInInspector] public string Username = "";
+    public int RankPosition;
 
     public void Start()
     {
@@ -26,8 +27,9 @@ public class PlayerInfo : MonoBehaviour
         sb.Append("Player (" + Username + ")");
         transform.gameObject.name = sb.ToString();
         
-        //Add self to the GO tab
+        //Add self to the GO tab & the ranking table
         GameManager.Instance.PlayersGameObjects.Add(transform.gameObject);
+        GameManager.Instance.RaceRanking.Add(transform.gameObject);
         
         //Initialize Position
         transform.gameObject.transform.position = GameManager.Instance.CheckPointManager

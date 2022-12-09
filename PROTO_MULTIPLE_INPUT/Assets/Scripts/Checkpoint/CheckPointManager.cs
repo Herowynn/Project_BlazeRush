@@ -17,9 +17,4 @@ public class CheckPointManager : MonoBehaviour
     {
         other.transform.position = CurrentCheckpoint.transform.position;
     }
-
-    public void PlaceInstanceOnStartingLine(GameObject gameObject)
-    {
-        gameObject.transform.position = FirstCheckpoint.transform.position;
-    }
 }
