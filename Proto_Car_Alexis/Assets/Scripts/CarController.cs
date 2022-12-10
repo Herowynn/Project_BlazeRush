@@ -21,55 +21,59 @@ public class CarController : MonoBehaviour
     public GameObject Arrow;
     public GameObject ArrowRotationCenter;
 
-    public static CarController Instance;
-
 
     private float _speedInput, _turnInput;
     private float _arrayRayLength;
     private bool _isGrounded;
     private bool _canMove;
+    private Vector3 _distArrowRayPoint;
+    private Vector3 _wantedDirection;
 
     private void Start()
     {
         SphereRB.transform.parent = null;
 
-        Vector3 distArrowRayPoint = Arrow.transform.position - RayPoint.position;
-        _arrayRayLength = distArrowRayPoint.magnitude + 1f;
+        _distArrowRayPoint = Arrow.transform.position - RayPoint.position;
+        _arrayRayLength = _distArrowRayPoint.magnitude + 1f;
     }
 
     private void Update()
     {
-        Debug.Log(SphereRB.velocity);
-
         _speedInput = 0f;
+        _distArrowRayPoint = Arrow.transform.position - RayPoint.position;
 
-        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
+        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0 || Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
         {
-            _speedInput = Input.GetAxis("Vertical") * ForwardAccel * 1000f;
+            _wantedDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+            _speedInput = ForwardAccel * 1000f;
 
+            LeftBackWheel.transform.Rotate(0f, WheelRotation, 0f);
+            RightBackWheel.transform.Rotate(0f, WheelRotation, 0f);
             LeftFrontWheel.transform.Rotate(0f, WheelRotation, 0f);
             RightFrontWheel.transform.Rotate(0f, WheelRotation, 0f);
-        }
 
-        _turnInput = Input.GetAxis("Horizontal");
-
-        if (_isGrounded)
-        {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, _turnInput * TurnStrength * Time.deltaTime, 0f));
-            ArrowRotationCenter.transform.rotation = Quaternion.Euler(ArrowRotationCenter.transform.rotation.eulerAngles + new Vector3(0f, _turnInput * TurnStrength * 1.5f * Time.deltaTime, 0f));
-
-            if(Mathf.Abs(Input.GetAxis("Vertical")) > 0)
+            if (_isGrounded)
             {
-                LeftBackWheel.transform.Rotate(0f, WheelRotation, 0f);
-                RightBackWheel.transform.Rotate(0f, WheelRotation, 0f);
+                Vector3 cross1 = Vector3.Cross(transform.forward, _wantedDirection);
+                Vector3 cross2 = Vector3.Cross(_distArrowRayPoint, _wantedDirection);
+                float carSignRotation = Mathf.Sign(cross1.y);
+                float arrowSignRotation = Mathf.Sign(cross2.y);
+
+                if (Mathf.Abs(Mathf.Acos(Vector3.Dot(transform.forward.normalized, _wantedDirection.normalized))) > Mathf.Deg2Rad * 2f)
+                {
+                    transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, carSignRotation * TurnStrength * Time.deltaTime, 0f));
+                }
+
+                if (Mathf.Abs(Mathf.Acos(Vector3.Dot(_distArrowRayPoint.normalized, _wantedDirection.normalized))) > Mathf.Deg2Rad * 2f)
+                {
+                    ArrowRotationCenter.transform.rotation = Quaternion.Euler(ArrowRotationCenter.transform.rotation.eulerAngles + new Vector3(0f, arrowSignRotation * TurnStrength * /*1.5f **/ Time.deltaTime, 0f));
+                }
+
+/*                LeftFrontWheel.localRotation = Quaternion.Euler(LeftFrontWheel.localRotation.eulerAngles.x, (_turnInput * MaxWheelTurn) - 90, LeftFrontWheel.localRotation.eulerAngles.z);
+
+                RightFrontWheel.localRotation = Quaternion.Euler(RightFrontWheel.localRotation.eulerAngles.x, (_turnInput * MaxWheelTurn) - 90, RightFrontWheel.localRotation.eulerAngles.z);*/
             }
         }
-
-        LeftFrontWheel.localRotation = Quaternion.Euler(LeftFrontWheel.localRotation.eulerAngles.x, (_turnInput * MaxWheelTurn) - 90,
-              LeftFrontWheel.localRotation.eulerAngles.z);
-
-        RightFrontWheel.localRotation = Quaternion.Euler(RightFrontWheel.localRotation.eulerAngles.x, (_turnInput * MaxWheelTurn) - 90,
-             RightFrontWheel.localRotation.eulerAngles.z);
 
         transform.position = SphereRB.transform.position;
     }
@@ -85,7 +89,7 @@ public class CarController : MonoBehaviour
         {
             _isGrounded = true;
 
-/*            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;*/
+            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         }
 
         if (Physics.Raycast(RayPoint.position, transform.forward, out hit, _arrayRayLength, arrowMask))
@@ -97,9 +101,9 @@ public class CarController : MonoBehaviour
         {
             SphereRB.drag = DragOnGround;
 
-            if (Mathf.Abs(_speedInput) > 0f)
+            if (Mathf.Abs(_speedInput) > 0f) 
             {
-                SphereRB.AddForce(transform.forward * _speedInput);
+                SphereRB.AddForce(_wantedDirection * _speedInput); ;
                 SphereRB.velocity = Vector3.ClampMagnitude(SphereRB.velocity, MaximumSpeed);
             }
         }
