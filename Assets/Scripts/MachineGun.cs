@@ -9,6 +9,7 @@ public class MachineGun : Offensive
     [SerializeField] private float _durationAfterActivation;
     [SerializeField] private float _fireRate;
     [SerializeField] private Transform _bulletSpawnPoint;
+    private Vector3 _direction;
     private float _timeIncrementation ;
 
     public GameObject ProjectilePrefab;
@@ -18,25 +19,26 @@ public class MachineGun : Offensive
 
     }
 
-    public override void Shoot(Vector3 direction)
+    public override void Shoot()
     {
        
-        StartCoroutine(WaitTime(_fireRate, direction));
+        StartCoroutine(WaitTime(_fireRate));
     }
     // Update is called once per frame
     void Update()
     {
-
+       _direction = -transform.right;
     }
-    IEnumerator WaitTime(float time, Vector3 direction)
+    IEnumerator WaitTime(float time)
     {
         _timeIncrementation = 0;
         while(_timeIncrementation < _durationAfterActivation)
         {
             GameObject go = Instantiate(ProjectilePrefab, _bulletSpawnPoint);
-            go.GetComponent<Projectile>().Init(direction);
+            go.transform.parent = null;
+            go.GetComponent<Projectile>().Init(_direction);
             _timeIncrementation += time;
-            Debug.Log("time incrementation " + _timeIncrementation + " duration " + _durationAfterActivation);
+            //Debug.Log("time incrementation " + _timeIncrementation + " duration " + _durationAfterActivation);
             yield return new WaitForSeconds(time);
         }
         Destroy(gameObject);

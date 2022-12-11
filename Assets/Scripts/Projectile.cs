@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed;
     private Rigidbody ProjectileRB;
+
     // Start is called before the first frame update
 
     private void Awake()

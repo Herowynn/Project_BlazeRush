@@ -8,5 +8,5 @@ public abstract class Offensive : MonoBehaviour
 
     // Start is called before the first frame update
 
-    public abstract void Shoot(Vector3 direction);
+    public abstract void Shoot();
 }

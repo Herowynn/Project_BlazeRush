@@ -57,7 +57,7 @@ public class CarController : MonoBehaviour
                     Vector3 position = transform.position;
                     position += transform.forward * 3;
 
-                    AttackObject.transform.GetChild(0).GetComponent<MachineGun>().Shoot( transform.forward);
+                    AttackObject.transform.GetChild(0).GetComponent<MachineGun>().Shoot();
                     AttackBoost = null;
                     //Destroy(AttackObject.gameObject.GetComponent<MachineGun>());
                   
