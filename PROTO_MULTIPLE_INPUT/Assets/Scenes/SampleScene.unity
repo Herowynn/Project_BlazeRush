@@ -392,7 +392,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1256
+  m_Name: pb_Mesh-1268
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -794,7 +794,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1318
+  m_Name: pb_Mesh-1342
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1701,7 +1701,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1308
+  m_Name: pb_Mesh-1332
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2309,7 +2309,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1288
+  m_Name: pb_Mesh-1300
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2624,7 +2624,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1298
+  m_Name: pb_Mesh-1310
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2832,6 +2832,8 @@ MonoBehaviour:
   - Armand
   - "R\xE9my"
   CurrentIndexForUsernames: 0
+  RaceRanking: []
+  RaceStarted: 0
 --- !u!43 &2063871336
 Mesh:
   m_ObjectHideFlags: 0
