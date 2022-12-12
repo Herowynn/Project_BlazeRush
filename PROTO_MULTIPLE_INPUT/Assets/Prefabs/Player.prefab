@@ -12,11 +12,13 @@ GameObject:
   - component: {fileID: 138313078756103484}
   - component: {fileID: 138313078756103487}
   - component: {fileID: 138313078756103486}
-  - component: {fileID: 138313078756103475}
   - component: {fileID: 138313078756103474}
   - component: {fileID: 138313078756103485}
+  - component: {fileID: 138313078756103475}
+  - component: {fileID: 1064554120727406778}
+  - component: {fileID: 4030795544101975215}
   m_Layer: 0
-  m_Name: Player_v1
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138313078756103480}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.85, y: 1.76, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -100,21 +102,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &138313078756103475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 138313078756103480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f180b89c38f810e4fbe4685b42379250, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 20
-  jumpHeight: 1
-  gravityValue: -9.81
 --- !u!114 &138313078756103474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,3 +182,44 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &138313078756103475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138313078756103480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f180b89c38f810e4fbe4685b42379250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 50
+  jumpHeight: 3
+  gravityValue: -9.81
+--- !u!114 &1064554120727406778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138313078756103480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092ea55f7c0927e4590103605324035f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberOfCheckpointPassed: 0
+--- !u!114 &4030795544101975215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138313078756103480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295aca6603cdc7c48a981415ba8d3f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Username: Armand
