@@ -23,6 +23,11 @@ public class Projectile : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
+    }
     void Update()
     {
 
