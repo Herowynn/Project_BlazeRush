@@ -9,6 +9,7 @@ public class CarController : MonoBehaviour
     private float _turnInput;
     private bool _isCarGrounded;
     private bool _hasBoost = false;
+    private GameObject AttackBoost;
 
     public int gravity;
     public float TurnSpeed;
@@ -18,7 +19,6 @@ public class CarController : MonoBehaviour
 
     public GameObject[] BonusList;
     public Transform AttackObject;
-    public GameObject AttackBoost;
     public Rigidbody CarRB;
     public Rigidbody SphereRB;
     public LayerMask GroundLayer;

@@ -139,7 +139,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6935124690244183357}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.6, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9938f093c2f226a47a49d4d2c727f62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _durationAfterActivation: 2
+  _durationAfterActivation: 2.5
   _fireRate: 0.1
   _bulletSpawnPoint: {fileID: 6726465578061475629}
   ProjectilePrefab: {fileID: 3035557110167704657, guid: 13607a23f7d1b54479a95f47000320ae, type: 3}
