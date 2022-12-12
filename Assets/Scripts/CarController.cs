@@ -12,7 +12,9 @@ public class CarController : MonoBehaviour
     private bool _hasOffense = false;
     private bool _isTouched = false;
 
-    public float rotation;
+    public float rotationX;
+    public float rotationY;
+    public float rotationZ;
     public int gravity;
     public float TurnSpeed;
     public float FwdSpeed;
@@ -90,7 +92,7 @@ public class CarController : MonoBehaviour
             }
             else
             {
-                transform.Rotate(rotation, 0, 0, Space.World);
+                transform.Rotate(rotationX, rotationY, rotationZ, Space.World);
                 Debug.Log("le flip mon gars");
             }
         }
