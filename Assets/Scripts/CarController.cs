@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    [SerializeField] private int _speedBoost;
     private float _moveInput;
     private float _turnInput;
     private bool _isCarGrounded;
-    private bool _hasBoost = false;
-    private GameObject AttackBoost;
+    private GameObject _attackBoost;
+    private GameObject _speedBoost;
 
     public int gravity;
     public float TurnSpeed;
@@ -17,8 +16,10 @@ public class CarController : MonoBehaviour
     public float BwdSpeed;
     public float alignToGroundTime;
 
-    public GameObject[] BonusList;
+    public GameObject[] AttackList;
+    public GameObject[] BoostList;
     public Transform AttackObject;
+    public Transform BoostObject;
     public Rigidbody CarRB;
     public Rigidbody SphereRB;
     public LayerMask GroundLayer;
@@ -48,7 +49,7 @@ public class CarController : MonoBehaviour
         Quaternion toRotateTo = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, toRotateTo, alignToGroundTime * Time.deltaTime);
 
-        if (AttackBoost != null && Input.GetButton("Fire1"))
+        if (_attackBoost != null && Input.GetButton("Fire1"))
         {
             if (AttackObject.transform.childCount != 0)
             {
@@ -58,7 +59,7 @@ public class CarController : MonoBehaviour
                     position += transform.forward * 3;
 
                     AttackObject.transform.GetChild(0).GetComponent<MachineGun>().Shoot();
-                    AttackBoost = null;
+                    _attackBoost = null;
                     //Destroy(AttackObject.gameObject.GetComponent<MachineGun>());
                   
                 }
@@ -68,13 +69,12 @@ public class CarController : MonoBehaviour
                 return;
             }
         }
-        if (Input.GetButton("Fire3"))
+        if (_speedBoost != null && Input.GetButton("Fire3"))
         {
-            if (_hasBoost)
+            if (BoostObject.transform.childCount != 0)
             {
-
-                SphereRB.AddForce(transform.forward * _speedBoost, ForceMode.VelocityChange);
-                _hasBoost = false;
+                BoostObject.transform.GetChild(0).GetComponent<Booster>().Boost(SphereRB);
+                _speedBoost = null;
             }
             else
             {
@@ -111,16 +111,16 @@ public class CarController : MonoBehaviour
                         Destroy(collision.gameObject);
 
 
-                        AttackBoost = Instantiate(BonusList[0], AttackObject);
+                        _attackBoost = Instantiate(AttackList[0], AttackObject);
                         //AttackObject.transform.GetChild(0).gameObject.AddComponent<MachineGun>();
                     }
                     break;
                 case BonusType.Boost:
-                    if (_hasBoost) return;
+                    if (BoostObject.transform.childCount != 0) return;
                     else
                     {
                         Destroy(collision.gameObject);
-                        _hasBoost = true;
+                        _speedBoost = Instantiate(BoostList[0], BoostObject);
                     }
                     break;
                 default:
