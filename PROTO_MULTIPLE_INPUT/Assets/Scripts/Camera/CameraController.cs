@@ -5,54 +5,47 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float MinHeight;
+    public float InitialOffsetY;
     public Vector3 ViewAngle;
-    public Vector3 OffsetPos;
-    public float SmoothSpeed = 10f;
-    public float Ratio;
-    public GameObject Target;
+
+    //intern var
+    [SerializeField] private bool _isCameraLaunched = false;
     
     void Start()
     {
         Vector3 FCpos = GameManager.Instance.CheckPointManager.GetComponent<CheckPointManager>().FirstCheckpoint
             .transform.position;
-        transform.position = new Vector3(FCpos.x, MinHeight, FCpos.y);
+        transform.position = new Vector3(FCpos.x, InitialOffsetY, FCpos.y);
         transform.rotation = Quaternion.Euler(ViewAngle.x, ViewAngle.y, ViewAngle.z);
     }
 
-    void LateUpdate()
+    void Update()
     {
-        if (GameManager.Instance.RaceStarted)
+        if (_isCameraLaunched)
             UpdateCameraPos();
+            
     }
 
     public void UpdateCameraPos()
     {
-        /*float groundedDistanceBetweenFirstAndLast = Target.GetComponent<MiddleController>().DistanceBetweenFirstAndLast;
-        float yPosititon = Ratio * groundedDistanceBetweenFirstAndLast > MinHeight
-            ? Ratio * groundedDistanceBetweenFirstAndLast
-            : MinHeight;
-        
-        Vector3 cameraDesiredPosition = new Vector3(Target.transform.position.x + OffsetPos.x, yPosititon + OffsetPos.y, Target.transform.position.z + OffsetPos.z);
-
-        //Vector3 velocity = Vector3.zero;
-        //Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, cameraDesiredPosition, ref velocity, SmoothSpeed);
-
-        transform.position = cameraDesiredPosition;
-        transform.LookAt(Target.transform);*/
-        
-        
-        Vector3 desiredPosition = new Vector3();
+        Vector3 cameraPos = new Vector3();
         var posFirstPlayer = GameManager.Instance.RaceRanking[0].transform.position;
         var posLastPlayer = GameManager.Instance.RaceRanking[GameManager.Instance.RaceRanking.Count - 1].transform.position;
 
-        float groundedDistance = Vector3.Distance(posFirstPlayer, posLastPlayer);
+        float diagonalDistance = Vector3.Distance(posFirstPlayer, transform.position);
+
+        Vector3 groundedFirstPlayer = new Vector3(posFirstPlayer.x, 3, posFirstPlayer.z);
+        Vector3 groundedCamera = new Vector3(transform.position.x, 3, transform.position.z);
+        float groundDistance = Vector3.Distance(groundedFirstPlayer, groundedCamera);
+
+        float heightDistance =
+            MathF.Sqrt(MathF.Pow(diagonalDistance, 2) - MathF.Pow(groundDistance, 2));
         
-        desiredPosition.x = (posFirstPlayer.x + posLastPlayer.x) / 2;
-        desiredPosition.z = (posFirstPlayer.z + posLastPlayer.z) / 2;
-        desiredPosition.y = Ratio * groundedDistance > MinHeight ? Ratio * groundedDistance : MinHeight;
+        Debug.Log(heightDistance);
         
-        Vector3 cameraPos = Vector3.Lerp(transform.position, desiredPosition, SmoothSpeed * Time.deltaTime);
+        cameraPos.x = (posFirstPlayer.x + posLastPlayer.x) / 2;
+        cameraPos.z = (posFirstPlayer.z + posLastPlayer.z) / 2;
+        cameraPos.y = heightDistance > InitialOffsetY ? heightDistance : InitialOffsetY;
         
         transform.position = cameraPos;
     }
