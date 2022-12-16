@@ -86,6 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f1f1de79550d348a93dbdc3e60a149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DurationAfterActivation: 5
-  SpeedAdded: 5
-  AccelerationDuration: 0
+  _durationAfterActivation: 5
+  _speedAdded: 5
+  _time: 0.01
