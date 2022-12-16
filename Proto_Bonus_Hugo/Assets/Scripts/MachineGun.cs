@@ -22,14 +22,14 @@ public class MachineGun : Offensive
     public override void Shoot()
     {
        
-        StartCoroutine(MinigunShoot(_fireRate));
+        StartCoroutine(WaitTime(_fireRate));
     }
     // Update is called once per frame
     void Update()
     {
        _direction = -transform.right;
     }
-    IEnumerator MinigunShoot(float time)
+    IEnumerator WaitTime(float time)
     {
         _timeIncrementation = 0;
         while(_timeIncrementation < _durationAfterActivation)
