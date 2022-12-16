@@ -35,6 +35,7 @@ Transform:
   - {fileID: 6847983602188970185}
   - {fileID: 4491502727210468842}
   - {fileID: 6847983601522916610}
+  - {fileID: 7983603111287965166}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,16 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e01897723acc9940a433f9b62db9df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedBoost: 50
   gravity: 30
   TurnSpeed: 150
   FwdSpeed: 200
   BwdSpeed: 150
   alignToGroundTime: 0
-  BonusList:
-  - {fileID: 6935124690244183357, guid: 950447962d2eefa48a8aaa854aeb3b6f, type: 3}
+  AttackList: []
+  BoostList: []
   AttackObject: {fileID: 6847983601522916610}
-  AttackBoost: {fileID: 3035557110167704657, guid: 13607a23f7d1b54479a95f47000320ae, type: 3}
+  BoostObject: {fileID: 0}
   CarRB: {fileID: 6847983601135466245}
   SphereRB: {fileID: 6847983602188970189}
   GroundLayer:
@@ -254,6 +254,37 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!1 &7675513545498592496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7983603111287965166}
+  m_Layer: 6
+  m_Name: BoostObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7983603111287965166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675513545498592496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.13, z: 2.415}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6847983601135466247}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6847983600951139251
 PrefabInstance:
   m_ObjectHideFlags: 0
