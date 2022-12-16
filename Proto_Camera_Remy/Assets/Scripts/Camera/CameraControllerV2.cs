@@ -7,7 +7,7 @@ public class CameraControllerV2 : MonoBehaviour
     public List<GameObject> Targets = new List<GameObject>();
     public Vector3 Offset;
     Vector3 _velocity;
-    public float smoothTime = .5f;
+    public float SmoothTime = .5f;
 
     public float MinZoom = 40f;
     public float MaxZoom = 10f;
@@ -40,7 +40,7 @@ public class CameraControllerV2 : MonoBehaviour
     {
         Vector3 centerPoint = GetCenterPoint();
 
-        transform.position = Vector3.SmoothDamp(transform.position, centerPoint + Offset, ref _velocity, smoothTime);
+        transform.position = Vector3.SmoothDamp(transform.position, centerPoint + Offset, ref _velocity, SmoothTime);
     }
 
     void Zoom()

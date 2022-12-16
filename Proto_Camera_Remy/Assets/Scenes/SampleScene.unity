@@ -1661,10 +1661,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Targets: []
-  Offset: {x: 0, y: 90, z: 0}
-  smoothTime: 0.5
-  MinZoom: 40
-  MaxZoom: 10
+  Offset: {x: 0, y: 45, z: -60}
+  SmoothTime: 0.01
+  MinZoom: 50
+  MaxZoom: 20
   ZoomLimiter: 10
 --- !u!1 &1020234547
 GameObject:
@@ -2038,7 +2038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: 2
+  m_MaxPlayerCount: -1
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
@@ -2866,6 +2866,8 @@ MonoBehaviour:
   PlayersUsernames:
   - Armand
   - "R\xE9my"
+  - Bastien
+  - Hugo
   CurrentIndexForUsernames: 0
   RaceRanking: []
   RaceStarted: 0
