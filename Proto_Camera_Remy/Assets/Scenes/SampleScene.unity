@@ -1559,6 +1559,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1639,7 +1640,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ea0e935603b8d346bf87315e0c53e76, type: 3}
   m_Name: 
@@ -1647,6 +1648,24 @@ MonoBehaviour:
   InitialOffsetY: 30
   ViewAngle: {x: 90, y: 0, z: 0}
   _isCameraLaunched: 0
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0415200351e5bbd4f8bc85b5c4f77f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Targets: []
+  Offset: {x: 0, y: 90, z: 0}
+  smoothTime: 0.5
+  MinZoom: 40
+  MaxZoom: 10
+  ZoomLimiter: 10
 --- !u!1 &1020234547
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,7 +2875,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1312
+  m_Name: pb_Mesh-14684
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
