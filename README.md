@@ -132,7 +132,7 @@ Pour lancer la course, il faut aller dans Unity, le GameObject `_Scripts` et coc
 Pour ce qui est des livrables écrits il y a :
 * `cdc_blaze_rush.pdf` qui correspond au cahier des charges avec le détails des fonctionnalités complexes à implémenter
 * `solution_ia.pdf` qui correspond à la solution technique pour implémenter l'IA
-* `UML_Project_Blaze_Rush.drawio` qui correspond à l'UML détaillant les différentes classes du jeu
+* `UML_Project_Blaze_Rush.drawio` qui correspond à l'UML détaillant les différentes classes du jeu à ouvrir avec le logiciel `draw.io`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
